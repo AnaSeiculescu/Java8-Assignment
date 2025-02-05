@@ -11,7 +11,8 @@ import java.util.List;
 public class App {
     public static void main( String[] args ) {
 
-        String inputFile = args[0];
+//        String inputFile = args[0];
+        String inputFile = "input.csv";
 ////        int targetMonth = Integer.parseInt(args[1]);
 ////        String outputFile = args[2];
 //
@@ -19,8 +20,8 @@ public class App {
     }
 
     public static void getResultsFromFile(Path path) {
-        FileParsing fileParsing = new FileParsing();
-        List<Person> persons = fileParsing.parseFileContent(path);
-        System.out.println(persons);
+        FileParsing fileParsing = new FileParsing(path);
+        System.out.println(fileParsing.parseFileContent(path));
+
     }
 }

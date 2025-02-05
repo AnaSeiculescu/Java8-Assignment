@@ -5,13 +5,17 @@ import java.time.LocalDate;
 public class Person {
 	private String firstName;
 	private String lastName;
-	private String birthDate;
-//	private LocalDate birthDate;
+	private LocalDate birthDate;
 
-	public Person(String firstName, String lastName, String birthDate) {
+	public Person(String firstName, String lastName, LocalDate birthDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
+	}
+
+	public Person(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	@Override
@@ -19,7 +23,7 @@ public class Person {
 		return "Person{" +
 				"firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
-				", birthDate='" + birthDate + '\'' +
-				'}';
+				", birthDate=" + birthDate +
+				'}' + '\n';
 	}
 }
