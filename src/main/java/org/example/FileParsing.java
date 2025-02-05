@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class FileParsing {
 	private List<String> lines = new ArrayList<>();
@@ -15,6 +14,10 @@ public class FileParsing {
 	private List<Person> people = new ArrayList<>();
 
 	private void readFile(Path path) throws IOException {
+		if(!Files.exists(path)) {
+			System.out.println("File not found!");
+			System.exit(1);
+		}
 		try {
 			lines = Files.readAllLines(path);
 		} catch(IOException e) {
@@ -22,27 +25,20 @@ public class FileParsing {
 		}
 	}
 
-	public List<String> parseFileContent() {
+	public List<Person> parseFileContent(Path path) {
 		try {
-			readFile(Paths.get("src/main/personsData.csv"));
+//			readFile(Paths.get("input.csv"));
+			readFile(Paths.get(String.valueOf(path)));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		return lines;
+		people = lines.stream()
+				.map(line -> {
+					String[] parts = line.split(",");
+					return new Person(parts[0], parts[1], parts[2]);
+				}).collect(Collectors.toList());
+		return people;
 	}
-
-//	public void parseFile() {
-//		try {
-//			Stream<String> lines = Files.lines(Path.of("personsData.csv"));
-//			people = lines.map(line -> {
-//				String[] parts = line.split(",");
-//				return new Person(parts[0], parts[1], parts[2]);
-//			}).collect(Collectors.toList());
-//		} catch(IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
 
 	public List<Person> getPeople() {
 		return people;
@@ -51,7 +47,7 @@ public class FileParsing {
 	@Override
 	public String toString() {
 		return "FileParsing{" +
-				"lines=" + lines +
+				"people=" + people +
 				'}';
 	}
 }
