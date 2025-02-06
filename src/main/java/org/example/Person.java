@@ -18,12 +18,24 @@ public class Person {
 		this.lastName = lastName;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Person{" +
 				"firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
-				", birthDate=" + birthDate +
+
 				'}' + '\n';
 	}
 }

@@ -16,12 +16,10 @@ public class App {
 ////        int targetMonth = Integer.parseInt(args[1]);
 ////        String outputFile = args[2];
 //
-        getResultsFromFile(Paths.get(inputFile));
+
+        SelectData selectData = new SelectData();
+//        System.out.println(csvWriter.getResultsFromInputFile());
+        System.out.println(selectData.selectNamesFromPersons());
     }
 
-    public static void getResultsFromFile(Path path) {
-        FileParsing fileParsing = new FileParsing(path);
-        System.out.println(fileParsing.parseFileContent(path));
-
-    }
 }

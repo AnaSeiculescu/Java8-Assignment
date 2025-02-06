@@ -16,11 +16,11 @@ public class FileParsing {
 	private List<Person> people = new ArrayList<>();
 	private Path path;
 
-	public FileParsing(Path path) {
-		this.path = path;
-	}
+//	public FileParsing(Path path) {
+//		this.path = path;
+//	}
 
-	private void readFile(Path path) throws IOException {
+	private void readFile() throws IOException {
 		if (!Files.exists(path)) {
 			System.out.println("File not found!");
 			System.exit(1);
@@ -32,9 +32,9 @@ public class FileParsing {
 		}
 	}
 
-	public List<Person> parseFileContent(Path path) {
+	public List<Person> parseFileContent() {
 		try {
-			readFile(Paths.get(String.valueOf(path)));
+			readFile();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -75,6 +75,10 @@ public class FileParsing {
 			System.out.println("Invalid birth date format at line: " + line);
 			return Optional.empty();
 		}
+	}
+
+	public void setPath(Path path) {
+		this.path = path;
 	}
 
 	public List<Person> getPeople() {
