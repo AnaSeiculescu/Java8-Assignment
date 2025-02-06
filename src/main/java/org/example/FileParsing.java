@@ -3,7 +3,6 @@ package org.example;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -14,13 +13,8 @@ import java.util.stream.Collectors;
 public class FileParsing {
 	private List<String> lines = new ArrayList<>();
 	private List<Person> people = new ArrayList<>();
-	private Path path;
 
-//	public FileParsing(Path path) {
-//		this.path = path;
-//	}
-
-	private void readFile() throws IOException {
+	private void readFile(Path path) throws IOException {
 		if (!Files.exists(path)) {
 			System.out.println("File not found!");
 			System.exit(1);
@@ -32,9 +26,9 @@ public class FileParsing {
 		}
 	}
 
-	public List<Person> parseFileContent() {
+	public List<Person> parseFileContent(Path path) {
 		try {
-			readFile();
+			readFile(path);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -75,10 +69,6 @@ public class FileParsing {
 			System.out.println("Invalid birth date format at line: " + line);
 			return Optional.empty();
 		}
-	}
-
-	public void setPath(Path path) {
-		this.path = path;
 	}
 
 	public List<Person> getPeople() {

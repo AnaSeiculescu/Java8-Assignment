@@ -32,10 +32,6 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person{" +
-				"firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-
-				'}' + '\n';
+		return firstName + ',' + lastName;
 	}
 }
