@@ -1,13 +1,7 @@
-## steps to run
+## description
 
-From the root folder, run the following in the CLI
-1. `mvn package`
-2. `java -cp .\target\Java8-Assignment-1.0-SNAPSHOT.jar org.example.App`
+by using streams and lambda expressions, implement a small application which
+1. load from a file a structure like first name, last name, date of birth
+2. write back another file containing only first name, last name ordered alphabetically for all the matches which have the birthday on an indicated month
 
-You should see the app's output in the console.
-<br><br>
-If You want to run the command application with command line arguments,
-simply add them at the end of your execution command like so:
-```shell
-java -cp .\target\Java8-Assignment-1.0-SNAPSHOT.jar org.example.App first.arg.here I_AM_THE_SECOND_ARGUMENT
-```
+write Unit Tests to check the correctness of the application
