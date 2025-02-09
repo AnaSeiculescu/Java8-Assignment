@@ -25,11 +25,10 @@ public class FileParserTest {
 
 		// execute
 		FileParser parser = new FileParser();
-		parser.setLines(lines);
-		List<Person> forActualResult = parser.parseFileContent();
+		List<Person> forActualResult = parser.parseFileContent(lines);
 		String actualResult = forActualResult.stream()
 				.map(Person::toStringForTest)
-						.collect(Collectors.joining("\n"));
+				.collect(Collectors.joining("\n"));
 
 		// verify
 		assertEquals(expectedResult, actualResult);
@@ -53,8 +52,7 @@ public class FileParserTest {
 
 		// execute
 		FileParser parser = new FileParser();
-		parser.setLines(lines);
-		List<Person> forActualResult = parser.parseFileContent();
+		List<Person> forActualResult = parser.parseFileContent(lines);
 		String actualResult = forActualResult.stream()
 				.map(Person::toStringForTest)
 				.collect(Collectors.joining("\n"));
@@ -75,8 +73,7 @@ public class FileParserTest {
 
 		// execute
 		FileParser parser = new FileParser();
-		parser.setLines(lines);
-		List<Person> forActualResult = parser.parseFileContent();
+		List<Person> forActualResult = parser.parseFileContent(lines);
 		String actualResult = forActualResult.stream()
 				.map(Person::toStringForTest)
 				.collect(Collectors.joining("\n"));
@@ -85,4 +82,29 @@ public class FileParserTest {
 		assertEquals(expectedResult, actualResult);
 
 	}
+
+	@Test
+	public void parseFileContentWrongInput() {
+
+		// prepare
+		List<Person> forExpectedResult = new ArrayList<>();
+		Person person1 = new Person("Gigel", "Popescu");
+		forExpectedResult.add(person1);
+		String expectedResult = "";
+
+		List<String> lines = List.of("Gigel,Popescu");
+
+		// execute
+		FileParser parser = new FileParser();
+		List<Person> forActualResult = parser.parseFileContent(lines);
+		String actualResult = forActualResult.stream()
+				.map(Person::toStringForTest)
+				.collect(Collectors.joining("\n"));
+
+		// verify
+		assertEquals(expectedResult, actualResult);
+		// Found less than three elements at line...
+
+	}
+
 }

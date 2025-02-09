@@ -29,7 +29,7 @@ public class FileParser {
 	public List<Person> parseFileContent(List<String> linesFromFile) {
 
 		List<Person> people;
-		List<String> invalidEntries = new ArrayList<>();
+//		List<String> invalidEntries = new ArrayList<>();
 
 		if (linesFromFile.isEmpty()) {
 			System.out.println("File is empty or has invalid entries.");
@@ -43,9 +43,9 @@ public class FileParser {
 				.map(Optional::get)
 				.collect(Collectors.toList());
 
-		invalidEntries = linesFromFile.stream()
-				.filter(line -> parseLine(line).isEmpty())
-				.collect(Collectors.toList());
+//		invalidEntries = linesFromFile.stream()
+//				.filter(line -> parseLine(line).isEmpty())
+//				.collect(Collectors.toList());
 
 		return people;
 	}
@@ -53,7 +53,10 @@ public class FileParser {
 	private Optional<Person> parseLine(String line) {
 		String[] parts = line.split(",");
 
-		if (line.length() < 3) return Optional.empty();
+		if (parts.length < 3) {
+			System.out.println("Found less than three elements at line: " + line);
+			return Optional.empty();
+		}
 
 		for (String element : parts) {
 			if (element.trim().isEmpty()) {
@@ -66,7 +69,7 @@ public class FileParser {
 			LocalDate birthDate = LocalDate.parse(parts[2]);
 			return Optional.of(new Person(parts[0], parts[1], birthDate));
 		} catch (DateTimeParseException e) {
-			System.out.println("Invalid birth date format at line: " + line);
+			System.out.println("Invalid birthdate format at line: " + line);
 			return Optional.empty();
 		}
 	}
