@@ -35,7 +35,7 @@ public class DataManager {
 		List<Person> fullData = getResultsFromInputFile();
 
 		PeopleByMonth peopleByMonth = new PeopleByMonth();
-		List<Person> dataForWriting = peopleByMonth.selectNamesFromPersonsInMonth(fullData, month);
+		List<Person> dataForWriting = peopleByMonth.selectNamesFromPersonsByMonth(fullData, month);
 
 		CSVWriter csvWriter = new CSVWriter();
 		csvWriter.writeData(outputPath, dataForWriting);

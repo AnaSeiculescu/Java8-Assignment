@@ -7,7 +7,7 @@ package org.example;
 public class App {
     public static void main( String[] args ) {
 
-        SelectAndWriteData selectAndWriteData = new SelectAndWriteData(4);
+        DataManager selectAndWriteData = new DataManager(9);
         System.out.println(selectAndWriteData.writeData());
     }
 

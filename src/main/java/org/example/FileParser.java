@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 public class FileParser {
 
 	public List<String> readFile(Path path) {
-		List<String> lines = new ArrayList<>();
+		List<String> lines;
 		if (!Files.exists(path)) {
 			System.out.println("File not found!");
 			System.exit(1);
@@ -29,7 +28,6 @@ public class FileParser {
 	public List<Person> parseFileContent(List<String> linesFromFile) {
 
 		List<Person> people;
-//		List<String> invalidEntries = new ArrayList<>();
 
 		if (linesFromFile.isEmpty()) {
 			System.out.println("File is empty or has invalid entries.");
@@ -42,10 +40,6 @@ public class FileParser {
 				}).filter(Optional::isPresent)
 				.map(Optional::get)
 				.collect(Collectors.toList());
-
-//		invalidEntries = linesFromFile.stream()
-//				.filter(line -> parseLine(line).isEmpty())
-//				.collect(Collectors.toList());
 
 		return people;
 	}
