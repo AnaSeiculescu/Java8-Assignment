@@ -5,6 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PeopleByMonth {
+	/**
+	 * Select names from persons by month list.
+	 *
+	 * @param fullData the full data
+	 * @param month    the month
+	 * @return a list of people.
+	 * Takes the full list of collected persons (with first name, last name and birthdate) and an integer for birth month.
+	 * Selects the persons after the birth month and returns a list of persons with just first name and last name.
+	 */
 	public List<Person> selectNamesFromPersonsByMonth(List<Person> fullData, int month) {
 		List<Person> dataForWriting = new ArrayList<>();
 		if (fullData.isEmpty()) {

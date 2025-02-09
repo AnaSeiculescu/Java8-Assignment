@@ -8,6 +8,14 @@ import java.util.List;
 
 public class CSVWriter {
 
+	/**
+	 * Write data boolean.
+	 *
+	 * @param outputPath     the output path
+	 * @param dataForWriting the data for writing
+	 * @return boolean
+	 * Takes the output path and the list of selected people (first name and last name) and writes a CSV file with this data.
+	 */
 	public boolean writeData(Path outputPath, List<Person> dataForWriting) {
 		BufferedWriter writer = null;
 		try {

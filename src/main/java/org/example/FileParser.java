@@ -25,6 +25,14 @@ public class FileParser {
 		return lines;
 	}
 
+	/**
+	 * Parse file content list.
+	 *
+	 * @param linesFromFile the lines from file
+	 * @return a list of Person from the correct entries.
+	 * Takes a list of strings representing the valid lines read from the file.
+	 * The lines are validated in the parseLine() private method.
+	 */
 	public List<Person> parseFileContent(List<String> linesFromFile) {
 
 		List<Person> people;
