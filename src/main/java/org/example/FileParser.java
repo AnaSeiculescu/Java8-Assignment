@@ -11,10 +11,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FileParser {
-	private List<String> lines = new ArrayList<>();
-	private List<Person> people = new ArrayList<>();
 
-	public void readFile(Path path) {
+	public List<String> readFile(Path path) {
+		List<String> lines = new ArrayList<>();
 		if (!Files.exists(path)) {
 			System.out.println("File not found!");
 			System.exit(1);
@@ -24,17 +23,19 @@ public class FileParser {
 		} catch (IOException e) {
 			throw new RuntimeException("Something went wrong reading the file: " + e);
 		}
+		return lines;
 	}
 
-	public List<Person> parseFileContent() {
+	public List<Person> parseFileContent(List<String> linesFromFile) {
 
+		List<Person> people;
 		List<String> invalidEntries = new ArrayList<>();
 
-		if (lines.isEmpty()) {
+		if (linesFromFile.isEmpty()) {
 			System.out.println("File is empty or has invalid entries.");
 		}
 
-		people = lines.stream()
+		people = linesFromFile.stream()
 				.map(line -> {
 					Optional<Person> person = parseLine(line);
 					return person;
@@ -42,7 +43,7 @@ public class FileParser {
 				.map(Optional::get)
 				.collect(Collectors.toList());
 
-		invalidEntries = lines.stream()
+		invalidEntries = linesFromFile.stream()
 				.filter(line -> parseLine(line).isEmpty())
 				.collect(Collectors.toList());
 
@@ -70,18 +71,4 @@ public class FileParser {
 		}
 	}
 
-	public List<Person> getPeople() {
-		return people;
-	}
-
-	public void setLines(List<String> lines) {
-		this.lines = lines;
-	}
-
-	@Override
-	public String toString() {
-		return "FileParser{" +
-				"people=" + people +
-				'}';
-	}
 }
