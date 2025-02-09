@@ -10,9 +10,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class FileParsing {
+public class FileParser {
 	private List<String> lines = new ArrayList<>();
 	private List<Person> people = new ArrayList<>();
+	private Path path;
+
+	
 
 	private void readFile(Path path) throws IOException {
 		if (!Files.exists(path)) {
@@ -77,7 +80,7 @@ public class FileParsing {
 
 	@Override
 	public String toString() {
-		return "FileParsing{" +
+		return "FileParser{" +
 				"people=" + people +
 				'}';
 	}
