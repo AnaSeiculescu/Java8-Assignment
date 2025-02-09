@@ -13,11 +13,8 @@ import java.util.stream.Collectors;
 public class FileParser {
 	private List<String> lines = new ArrayList<>();
 	private List<Person> people = new ArrayList<>();
-	private Path path;
 
-	
-
-	private void readFile(Path path) throws IOException {
+	public void readFile(Path path) {
 		if (!Files.exists(path)) {
 			System.out.println("File not found!");
 			System.exit(1);
@@ -29,14 +26,13 @@ public class FileParser {
 		}
 	}
 
-	public List<Person> parseFileContent(Path path) {
-		try {
-			readFile(path);
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
+	public List<Person> parseFileContent() {
 
 		List<String> invalidEntries = new ArrayList<>();
+
+		if (lines.isEmpty()) {
+			System.out.println("File is empty or has invalid entries.");
+		}
 
 		people = lines.stream()
 				.map(line -> {
@@ -76,6 +72,10 @@ public class FileParser {
 
 	public List<Person> getPeople() {
 		return people;
+	}
+
+	public void setLines(List<String> lines) {
+		this.lines = lines;
 	}
 
 	@Override

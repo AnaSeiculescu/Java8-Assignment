@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -23,8 +24,13 @@ public class SelectAndWriteData {
 	}
 
 	private List<Person> getResultsFromInputFile() {
-		FileParsing fileParsing = new FileParsing();
-		fullData = fileParsing.parseFileContent(inputPath);
+		FileParser fileParser = new FileParser();
+		try {
+			fileParser.readFile(inputPath);
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+		}
+		fullData = fileParser.parseFileContent();
 		return fullData;
 	}
 

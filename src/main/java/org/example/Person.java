@@ -30,6 +30,14 @@ public class Person {
 		return birthDate;
 	}
 
+	public String toStringForTest() {
+		return "Person{" +
+				"firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", birthDate=" + birthDate +
+				'}';
+	}
+
 	@Override
 	public String toString() {
 		return firstName + ',' + lastName;
